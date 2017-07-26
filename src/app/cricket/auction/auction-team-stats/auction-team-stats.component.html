@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="auction-stats-container scalable-container" [class.full-screen]="isFullScreen">
+        <div class="scale-icon pointer">
+          <span class="glyphicon glyphicon-resize-full" *ngIf="!isFullScreen" (click)="onExpand()"></span>
+          <span class="glyphicon glyphicon-resize-small" *ngIf="isFullScreen" (click)="onMinimize()"></span>
+        </div>
+        <div class="content">
+          <app-auction-team-item></app-auction-team-item>
+          <app-auction-team-item></app-auction-team-item>
+          <app-auction-team-item></app-auction-team-item>
+          <app-auction-team-item></app-auction-team-item>
+          <app-auction-team-item></app-auction-team-item>
+          <app-auction-team-item></app-auction-team-item>
+          <app-auction-team-item></app-auction-team-item>
+          <app-auction-team-item></app-auction-team-item>
+          <app-auction-team-item></app-auction-team-item>
+          <app-auction-team-item></app-auction-team-item>
+        </div>
+      </div>
+    </div>
+  </div>

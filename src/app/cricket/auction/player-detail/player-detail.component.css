@@ -1,0 +1,62 @@
+.player-container .details
+{
+    margin-top: 32px;
+    display: inline-block;
+}
+
+.profile-pic-container
+{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto; 
+}
+
+.player-container.full-screen
+{
+    display: table-row;
+}
+
+.player-container.full-screen .content
+{
+    display: inline-block;
+    margin-top: 32px;
+}
+
+.player-container.full-screen .img-section
+{
+    width: 50%;
+    display: table-cell;
+    vertical-align: middle;
+    height: auto;
+}
+
+.player-container.full-screen .img-section .profile-pic-container
+{
+    width: 70%;
+    height: auto;
+}
+
+.player-container.full-screen .detail-section
+{
+    width: 50%;
+    text-align: left;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.player-container.full-screen h2
+{
+  font-size: 45px;   
+}
+
+.player-container.full-screen h4
+{
+  font-size: 27px;   
+}
+
+.player-container.full-screen h5
+{
+  font-size: 21px;   
+}

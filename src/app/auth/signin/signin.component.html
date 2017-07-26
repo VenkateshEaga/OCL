@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="form-container">
+        <form (ngSubmit)="onSubmit(signinForm)" #signinForm="ngForm">
+          <div class="form-group">
+            <label for="email-id">Your OSI email ID</label>
+            <input id="email-id" type="email" class="form-control" placeholder="ex:vannem@osius.com" name="email" ngModel #email="ngModel"
+              required email pattern="\w+@osius\.com">
+            <span class="help-block" *ngIf="!email.valid && email.touched">
+                <span *ngIf="email.errors['required']">Please enter your email address!</span>
+            <span *ngIf="!email.errors['required'] && email.errors['email']">Please enter a valid email address!</span>
+            <span *ngIf="!email.errors['required'] && !email.errors['email'] && email.errors['pattern']">Please enter your OSI email address!</span>
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="password">
+            Password
+          </label>
+            <input type="password" id="password" class="form-control" name="password" ngModel #password="ngModel" required minlength="6">
+            <span *ngIf="!password.valid && password.touched" class="help-block"><span *ngIf="password.errors['required']">Please enter your password!</span>
+            <span
+              *ngIf="password.errors['minlength']">Password should have minimum of 6 characters!</span>
+              </span>
+          </div>
+          <button type="submit" class="btn btn-primary" [disabled]="!signinForm.valid">SignIn</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

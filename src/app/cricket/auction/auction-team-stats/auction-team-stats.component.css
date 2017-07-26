@@ -1,0 +1,10 @@
+.auction-stats-container
+{
+    margin: 16px auto;
+    padding-top: 48px;
+}
+
+.auction-stats-container.full-screen
+{
+    padding-top: 64px; 
+}

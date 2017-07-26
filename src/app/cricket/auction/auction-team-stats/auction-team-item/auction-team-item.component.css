@@ -1,0 +1,19 @@
+.team-item
+{
+    padding: 4px 0;
+}
+
+.auction-stats-container.full-screen .team-item
+{
+    width: 50%;
+    float: left;
+}
+
+.team-captain-profile
+{
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+
+

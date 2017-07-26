@@ -1,0 +1,144 @@
+/* You can add global styles to this file, and also import other style files */
+
+html { 
+  background: url(assets/mirrored_squares.png) repeat center center fixed; 
+  /*-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;*/
+}
+
+body{
+  background-color: transparent !important;
+  color: #fff;
+}
+
+img
+{
+    max-width: 100%;
+}
+
+.header-logo
+{
+    max-height: 50px;
+    margin-right: 24px;
+}
+
+.help-block
+{
+    color: #fff;
+}
+
+.info-block
+{
+    padding: 48px 16px;
+    background: midnightblue;
+    border-radius: 10px;
+    font-weight: bold;
+    text-align: center;
+    background: -webkit-linear-gradient(skyblue, midnightblue); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(skyblue, midnightblue); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(skyblue, midnightblue); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(skyblue, midnightblue); /* Standard syntax */
+}
+
+.form-container
+{
+    background-color: rgba(255, 69, 0, 0.4);
+    padding: 32px;
+    border-radius: 10px;
+    margin-top: 32px;
+}
+
+.center-align
+{
+    text-align: center;
+}
+
+.glyphicon
+{
+    font-size: 24px;
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+.scalable-container
+{
+    background-color: purple;
+    border-radius: 25px;
+    padding: 32px 16px;
+    margin-top: 16px;
+    text-align: center;
+    position: relative;
+}
+
+.scalable-container .scale-icon
+{
+    position: absolute;
+    display: inline-block;
+    top: 16px;
+    right: 19px;
+}
+
+.full-screen
+{
+    position: fixed;
+    width: 90%;
+    height: 90%;
+    top: 50px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+    z-index: 1;
+}
+
+.padding-0
+{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.padding-l-0
+{
+    padding-left: 0;
+}
+
+.padding-r-0
+{
+    padding-right: 0;
+}
+
+.padding-sm
+{
+    padding: 0 2px;
+}
+
+.padding-md
+{
+    padding: 0 5px;
+}
+
+.align-left
+{
+    text-align: left;
+}
+
+.align-right
+{
+    text-align: right;
+}
+
+.align-center
+{
+    text-align: center;
+}
+
+.pointer
+{
+    cursor: pointer;
+}
