@@ -1,3 +1,4 @@
+import { PlayerService } from './../players.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuctionComponent implements OnInit {
 
-  constructor() { }
+  constructor(private playerService: PlayerService) { }
 
   ngOnInit() {
+  }
+
+  onFetchPlayerClick()
+  {
+    this.playerService.fetchNewPlayer();
   }
 
 }

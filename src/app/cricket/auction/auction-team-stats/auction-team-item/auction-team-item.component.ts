@@ -1,4 +1,6 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Team } from "app/cricket/team.model";
+import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
+
 
 @Component({
   selector: 'app-auction-team-item',
@@ -7,7 +9,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class AuctionTeamItemComponent implements OnInit {
-
+  
+  @Input() teamItem: Team;
   constructor() { }
 
   ngOnInit() {

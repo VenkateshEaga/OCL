@@ -1,5 +1,7 @@
-import { Player } from './../player.model';
+import { Player } from "app/cricket/player.model";
+import { PlayerService } from "app/cricket/players.service";
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from "rxjs/Subscription";
 
 @Component({
   selector: 'app-player-detail',
@@ -9,10 +11,17 @@ import { Component, OnInit } from '@angular/core';
 export class PlayerDetailComponent implements OnInit {
   
   isFullScreen: boolean = false;
-  player: Player
-  constructor() { }
+  player: Player;
+  playerChangedSubscription: Subscription;
+
+  constructor(private playerService: PlayerService) { }
 
   ngOnInit() {
+    this.playerService.playerChanged.subscribe(
+      (newPlayer: Player) => {
+      this.player = newPlayer;
+      this.onExpand();
+    });
   }
   
   onExpand()

@@ -1,3 +1,5 @@
+import { PlayerService } from './cricket/players.service';
+import { TeamService } from './cricket/teams.service';
 import { AuthModule } from './auth/auth.module';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -28,7 +30,7 @@ import { AuctionTeamItemComponent } from './cricket/auction/auction-team-stats/a
     AppRoutingModule,
     AuthModule
   ],
-  providers: [],
+  providers: [TeamService, PlayerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

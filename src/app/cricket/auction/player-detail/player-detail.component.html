@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="player">
   <div class="row">
     <div class="col-md-12">
       <div class="player-container scalable-container" [class.full-screen]="isFullScreen">
@@ -9,18 +9,19 @@
         <div class="content">
           <div class="img-section">
             <div class="profile-pic-container">
-              <img src="assets/avatar.png" alt="player">
+              <img src="{{player.imgPath}}" alt="player">
             </div>
           </div>
           <div class="detail-section">
             <div class="name">
-              <h2>Player Name</h2>
-              <h5>(All-Rounder)</h5>
+              <h2>{{player.name}}</h2>
+              <h5>({{player.businessUnit}})</h5>
             </div>
             <div class="details">
-              <h4>Left Handed Batsman</h4>
-              <h4>Right Arm Off-Break Bowler</h4>
-              <h5>Not Available on 1-Nov-2017, 8-Nov-2017</h5>
+              <h4>{{player.playingRole}}</h4>
+              <h4>{{player.battingStyle}}</h4>
+              <h4>{{player.bowlingStyle}}</h4>
+              <h5>{{player.availability}}</h5>
             </div>
           </div>
         </div>

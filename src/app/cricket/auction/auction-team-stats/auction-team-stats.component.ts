@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Team } from "app/cricket/team.model";
+import { TeamService } from "app/cricket/teams.service";
 
 @Component({
   selector: 'app-auction-team-stats',
@@ -8,10 +10,12 @@ import { Component, OnInit } from '@angular/core';
 export class AuctionTeamStatsComponent implements OnInit {
   
   isFullScreen: boolean = false;
+  teams: Team[] =[];
 
-  constructor() { }
+  constructor(private teamService: TeamService) { }
 
   ngOnInit() {
+    this.teams = this.teamService.getTeams();
   }
 
   onExpand()

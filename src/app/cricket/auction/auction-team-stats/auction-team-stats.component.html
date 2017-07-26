@@ -7,16 +7,7 @@
           <span class="glyphicon glyphicon-resize-small" *ngIf="isFullScreen" (click)="onMinimize()"></span>
         </div>
         <div class="content">
-          <app-auction-team-item></app-auction-team-item>
-          <app-auction-team-item></app-auction-team-item>
-          <app-auction-team-item></app-auction-team-item>
-          <app-auction-team-item></app-auction-team-item>
-          <app-auction-team-item></app-auction-team-item>
-          <app-auction-team-item></app-auction-team-item>
-          <app-auction-team-item></app-auction-team-item>
-          <app-auction-team-item></app-auction-team-item>
-          <app-auction-team-item></app-auction-team-item>
-          <app-auction-team-item></app-auction-team-item>
+          <app-auction-team-item *ngFor="let team of teams" [teamItem]="team"></app-auction-team-item>
         </div>
       </div>
     </div>
