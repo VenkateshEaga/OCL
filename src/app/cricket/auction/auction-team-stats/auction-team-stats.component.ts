@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Team } from "app/cricket/team.model";
-import { TeamService } from "app/cricket/teams.service";
+import { TeamService } from "app/cricket/team.service";
 
 @Component({
   selector: 'app-auction-team-stats',

@@ -13,6 +13,19 @@
 {
     border-radius: 50%;
     overflow: hidden;
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+}
+
+.team-player-count
+{
+    position: absolute;
+    top: -8px;
+    right: 3px;
+    font-weight: bold;
+    color: gold;
+    font-size: 20px;
 }
 
 

@@ -1,18 +1,24 @@
 <div class="team-item">
-  <div class="row">
-    <div class="col-sm-2 col-xs-8 vcenter">
-      <div class="team-captain-profile">
-        <img src="{{teamItem.logoPath}}" alt="Captain">
+  <form (ngSubmit)="addPlayer(playerBidForm)" #playerBidForm="ngForm">
+    <div class="row">
+      <div class="col-sm-2 col-xs-8 vcenter relative">
+        <div class="team-captain-profile">
+          <img src="{{teamItem.logoPath}}" appImgCenter alt="Captain">
+        </div>
+        <div class="team-player-count">
+          {{teamItem.playerCount}}
+        </div>
       </div>
+      <div class="col-sm-3 col-xs-8 vcenter padding-0 align-left">
+        <h4>{{teamItem.name}}</h4>
+      </div>
+      <div class="col-sm-2 col-xs-8 vcenter">
+        <h4>{{teamItem.moneyLeft | currency:'INR':true:'1.0-0'}}</h4>
+      </div>
+      <div class="col-sm-2 col-xs-8 vcenter padding-0"><input type="number" name="bidAmount" class="form-control" maxlength="6" ngModel required #name="ngModel" placeholder="Amount">
+      </div>
+      <div class="col-sm-2 col-xs-8 vcenter padding-0"><button type="submit" [disabled]="!playerBidForm.valid || !currentPlayer" class="btn btn-success">Add Player</button></div>
     </div>
-    <div class="col-sm-3 col-xs-8 vcenter padding-0 align-left">
-      <h4>{{teamItem.name}}</h4>
-    </div>
-    <div class="col-sm-2 col-xs-8 vcenter">
-      <h4>{{teamItem.moneySpent}}</h4>
-    </div>
-    <div class="col-sm-2 col-xs-8 vcenter padding-0"><input type="text" class="form-control" placeholder="bid amount"></div>
-    <div class="col-sm-2 col-xs-8 vcenter padding-0"><button type="submit" class="btn btn-success">Add Player</button>
-    </div>
-  </div>
+    <div><span *ngIf="!name.valid && name.touched" class="help-block align-right">Please enter a valid bid amount</span></div>
+  </form>
 </div>

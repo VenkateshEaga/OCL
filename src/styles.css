@@ -26,7 +26,7 @@ img
 
 .help-block
 {
-    color: #fff;
+    color: #fff;     
 }
 
 .info-block
@@ -74,6 +74,7 @@ img
     margin-top: 16px;
     text-align: center;
     position: relative;
+    box-shadow: 10px 10px 10px rgba(0,0,0,0.3);
 }
 
 .scalable-container .scale-icon
@@ -141,4 +142,9 @@ img
 .pointer
 {
     cursor: pointer;
+}
+
+.relative
+{
+    position: relative;
 }

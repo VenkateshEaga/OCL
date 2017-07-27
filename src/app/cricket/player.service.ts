@@ -20,7 +20,7 @@ export class PlayerService
         this.currentPlayer = new Player(
             1, 
             "Rajesh Vottem", 
-            "assets/avatar.png", 
+            "assets/profiles/Rajesh_Vottem_Edited.jpg", 
             "Ops", 
             "All-Rounder",
             "Right Hand Batsman",
