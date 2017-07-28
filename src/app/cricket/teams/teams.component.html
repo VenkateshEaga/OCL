@@ -1,0 +1,17 @@
+<div class="container"> 
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 scalable-container">
+    <div class="row">
+      <div class="col-xs-3">
+          <app-team *ngFor="let team of teams" (click)="populateTeam(team.id)" 
+          [team] ="team" class="list-group-item clearfix"></app-team>
+         
+        </div>
+      
+      <div class="col-xs-9 pull-right align-middle" style="padding-right: 20px;">
+         <router-outlet></router-outlet>
+      </div>
+      </div>
+  </div>
+  </div>
+</div>

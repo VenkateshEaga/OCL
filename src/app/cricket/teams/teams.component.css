@@ -1,0 +1,13 @@
+.col-xs-3{
+    padding-left: 0px;
+}
+.list-group-item {
+    background-color: purple;
+    border-color:  #ddd;
+    border-style: solid;
+    border-width: 1px 1px 1px 0px;
+}
+
+.list-group-item:focus,a.list-group-item:focus,.list-group-item:hover, a.list-group-item:hover, button.list-group-item:focus, button.list-group-item:hover {
+    background-color: #940894;
+}

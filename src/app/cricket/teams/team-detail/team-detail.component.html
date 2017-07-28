@@ -1,0 +1,35 @@
+<div class="row panel panel-default scalable-container">
+  <div class="row" style="padding-bottom: 30px">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="col-md-5 vcenter">
+        <img class="img-responsive img-rounded" [src]="team.logoPath">
+      </div>
+        <span class="col-md-7 vcenter"><h2>{{team.name}}</h2></span>
+    </div>
+  </div>
+  <div class="row" style="text-align: left" *ngFor="let player of team.players"> 
+    <div class="col-xs-1 vcenter">
+      <span >
+          <img [src]="player.imgPath" alt="{{player.name}}" class="img-rounded"style="max-height:50px;">
+      </span>
+    </div>
+    <div class="col-xs-4 vcenter">
+     
+      <span class="header">{{player.name}}</span>
+      <span class="red">
+        <span  *ngIf="player.isCaptain">(c)</span>
+        <span *ngIf="player.isViceCaptain">(vc)</span>
+        <span *ngIf="player.isWicketKeeper">(wk)</span>
+      </span>
+    </div>
+    <div class="col-xs-2 vcenter">
+       <p class="list-group-item-text">{{player.playingRole}}</p>
+    </div>
+    <div class="col-xs-1 vcenter">
+      <p class="list-group-item-text">{{player.businessUnit}}</p>
+    </div>
+    <div class="col-xs-1 vcenter">
+      <p class="list-group-item-text" *ngIf="!player.isCaptain && !player.isViceCaptain">{{player.moneySpentOn}}</p>
+    </div>
+  </div>
+</div>

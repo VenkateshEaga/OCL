@@ -1,3 +1,5 @@
+import { TeamDetailComponent } from './cricket/teams/team-detail/team-detail.component';
+import { TeamsComponent } from './cricket/teams/teams.component';
 import { AuctionComponent } from './cricket/auction/auction.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
@@ -9,7 +11,10 @@ const routes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'signin', component: SigninComponent },
     { path: 'signup', component: SignupComponent },
-    { path: 'auction', component: AuctionComponent }
+    { path: 'auction', component: AuctionComponent },
+    { path: 'teams', component: TeamsComponent ,children:[
+        { path:':id',component:TeamDetailComponent}
+    ] }
 ]
 
 @NgModule({
