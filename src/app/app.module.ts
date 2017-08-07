@@ -15,6 +15,9 @@ import { PlayerDetailComponent } from './cricket/auction/player-detail/player-de
 import { AuctionTeamStatsComponent } from './cricket/auction/auction-team-stats/auction-team-stats.component';
 import { AuctionTeamItemComponent } from './cricket/auction/auction-team-stats/auction-team-item/auction-team-item.component';
 import { ImgCenterDirective } from './shared/img-center.directive';
+import { TeamsComponent } from './cricket/teams/teams.component';
+import { TeamComponent } from './cricket/teams/team/team.component';
+import { TeamDetailComponent } from './cricket/teams/team-detail/team-detail.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { ImgCenterDirective } from './shared/img-center.directive';
     PlayerDetailComponent,
     AuctionTeamStatsComponent,
     AuctionTeamItemComponent,
-    ImgCenterDirective
+    ImgCenterDirective,
+    TeamsComponent,
+    TeamComponent,
+    TeamDetailComponent
   ],
   imports: [
     BrowserModule,
