@@ -1,6 +1,5 @@
 import { PlayerService } from 'app/cricket/player.service';
 import { Subscription } from 'rxjs/Subscription';
-import { Player } from './../../player.model';
 import { TeamService } from './../../../team.service';
 import { NgForm } from '@angular/forms';
 import { Team } from "app/cricket/team.model";
