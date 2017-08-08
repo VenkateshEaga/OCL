@@ -16,26 +16,29 @@ import { Component, OnInit, ViewEncapsulation, Input, OnDestroy } from '@angular
 export class AuctionTeamItemComponent implements OnInit, OnDestroy {
   
   @Input() teamItem: Team;
-  currentPlayer: Player;
-  playerChangedSubscription: Subscription;
+  currentPlayerWrapper: any = {'currentPlayer': null};
+  nextPlayerPickedSubscription: Subscription;
   constructor(private teamService: TeamService, private playerService: PlayerService ) { }
 
   ngOnInit() {
-      this.playerService.playerChanged.subscribe(
-        ((player: Player) => {
-          this.currentPlayer = player;
+      this.nextPlayerPickedSubscription =  this.playerService.nextPlayerPicked.subscribe(
+        ((currentPlayerWrapper: any) => {
+          this.currentPlayerWrapper = currentPlayerWrapper;
         })
       )
   }
 
   addPlayer(bidForm: NgForm)
   {
-    this.currentPlayer.moneySpentOn = bidForm.value.bidAmount;
-    this.teamService.addPlayerToTeam(this.teamItem.id, this.currentPlayer);
+    this.currentPlayerWrapper.currentPlayer.moneySpentOn = bidForm.value.bidAmount;
+    this.currentPlayerWrapper.currentPlayer.isPicked = true;
+    this.teamService.addPlayerToTeam(this.teamItem.id, this.currentPlayerWrapper.currentPlayer);
     bidForm.reset();
+    this.currentPlayerWrapper.currentPlayer = null;
+    this.playerService.nextPlayerPicked.next(this.currentPlayerWrapper);
   }
 
   ngOnDestroy() {
-    this.playerChangedSubscription.unsubscribe();
+    this.nextPlayerPickedSubscription.unsubscribe();
   }
 }

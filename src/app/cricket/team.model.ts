@@ -13,7 +13,7 @@ export class Team {
             moneySpent+= player.moneySpentOn;
         })
         let futureMinMoneyOnPlayers = (this.fullTeamCount - this.playerCount - 1) * 1000;
-        return this.teamBudget - moneySpent - futureMinMoneyOnPlayers;
+        return this.teamBudget - moneySpent - (futureMinMoneyOnPlayers < 0 ? 0 : futureMinMoneyOnPlayers);
     };
     get playerCount(): number
     {

@@ -15,16 +15,16 @@ export class PlayerDetailComponent implements OnInit, AfterViewChecked {
   @ViewChild('playerImage') private imageElement: ElementRef;
   isFullScreen: boolean = true;
   player: Player;
-  playerChangedSubscription: Subscription;
+  nextPlayerPickedSubscription: Subscription;
 
   constructor(private playerService: PlayerService,
     private utilitiesService: UtilitiesService,
     private renderer: Renderer2) { }
 
   ngOnInit() {
-    this.playerService.playerChanged.subscribe(
-      (newPlayer: Player) => {
-        this.player = newPlayer;
+    this.nextPlayerPickedSubscription = this.playerService.nextPlayerPicked.subscribe(
+      (newPlayerObject: any) => {
+        this.player = newPlayerObject.currentPlayer;
         this.isFullScreen = true;
       });
   }
@@ -32,8 +32,8 @@ export class PlayerDetailComponent implements OnInit, AfterViewChecked {
   ngAfterViewChecked() {
     if (this.imageElement) {
       this.imageElement.nativeElement.style = this.utilitiesService.resizeImage(
-        this.imageElement.nativeElement.parentElement.clientWidth,
-        this.imageElement.nativeElement.parentElement.clientHeight,
+        this.imageElement.nativeElement.parentElement.clientWidth + 1,
+        this.imageElement.nativeElement.parentElement.clientHeight + 1,
         this.imageElement.nativeElement.naturalWidth,
         this.imageElement.nativeElement.naturalHeight);
     }
@@ -44,6 +44,6 @@ export class PlayerDetailComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnDestroy() {
-    this.playerChangedSubscription.unsubscribe();
+    this.nextPlayerPickedSubscription.unsubscribe();
   }
 }

@@ -1,3 +1,4 @@
+import { DataService } from './cricket/data.service';
 import { UtilitiesService } from './shared/utilities.service';
 import { PlayerService } from './cricket/player.service';
 import { TeamService } from './cricket/team.service';
@@ -39,7 +40,7 @@ import { TeamDetailComponent } from './cricket/teams/team-detail/team-detail.com
     AppRoutingModule,
     AuthModule
   ],
-  providers: [TeamService, PlayerService, UtilitiesService],
+  providers: [TeamService, PlayerService, UtilitiesService, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
