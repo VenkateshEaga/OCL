@@ -4,7 +4,7 @@ import { Team } from './team.model';
 import { Player } from "app/cricket/player.model";
 export class TeamService {
     fetchTeams = new Subject<void>();     //from server
-    teamUpdated = new Subject<Team>();    //to server
+    playerAddedToTeam = new Subject<any>();    //to server
     private teamInitialAmount: number = 200000;
     private teams: Team[] = [
         new Team(1, "Avengers", "assets/team-logos/Avengers.png", [], this.teamInitialAmount, 17),
@@ -31,7 +31,7 @@ export class TeamService {
 
     addPlayerToTeam(teamID: number, player: Player) {
         this.teams.find(team => team.id == teamID).players.push(player);
-        this.notifyTeamUpdate(this.teams.find(team => team.id == teamID));
+        this.playerAddedToTeam.next({'teamID': teamID, 'player': player});
     }
 
     setTeams(teams: Team[])
@@ -41,9 +41,5 @@ export class TeamService {
             teams = [];
         }
         this.teams = teams;
-    }
-
-    notifyTeamUpdate(team: Team) {
-        this.teamUpdated.next(team);
     }
 }

@@ -11,10 +11,9 @@ import { Response } from "@angular/http";
 export class DataService {
 
     fetchPlayersSubscription: Subscription;
-    playersUpdatedSubscription: Subscription;
+    playerUpdatedSubscription: Subscription;
     playerAddedSubscription: Subscription;
     fetchTeamsSubscription: Subscription;
-    teamUpdatedSubscription: Subscription;
 
     constructor(private playerService: PlayerService,
         private teamService: TeamService,
@@ -26,15 +25,15 @@ export class DataService {
             }
         );
 
-        this.playersUpdatedSubscription = this.playerService.playersUpdated.subscribe(
-            (players: Player[]) => {
-                this.updatePlayers(players);
+        this.playerUpdatedSubscription = this.playerService.playerUpdated.subscribe(
+            (player: Player) => {
+                this.updatePlayer(player);
             }
         );
 
-        this.teamUpdatedSubscription = this.teamService.teamUpdated.subscribe(
-            (team: Team) => {
-                this.updateTeam(team);
+        this.playerAddedSubscription = this.teamService.playerAddedToTeam.subscribe(
+            (data) => {
+                this.updateTeam(data);
             }
         );
 
@@ -43,8 +42,6 @@ export class DataService {
                 this.getTeams();
             }
         );
-
-
     }
 
     getPlayers() {
@@ -65,12 +62,12 @@ export class DataService {
         )
     }
 
-    updatePlayers(players: Player[]) {
-        this.http.post('/updatePlayers', players).subscribe();
+    updatePlayer(player: Player) {
+        this.http.post('/updatePlayers', player).subscribe();
     }
 
-    updateAddedPlayer(player: Player) {
-        this.http.post('/updateAddedPlayer', player).subscribe();
+    AddPlayer(data) {
+        this.http.post('/updateAddedPlayer', data).subscribe();
     }
 
     updateTeam(team: Team) {

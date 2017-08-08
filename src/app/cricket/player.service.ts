@@ -4,7 +4,7 @@ import { Subject } from "rxjs/Subject";
 export class PlayerService {
     nextPlayerPicked = new Subject<any>();     //to other components and services
     fetchPlayers = new Subject<void>();        //from server
-    playersUpdated = new Subject<any>();       //to server
+    playerUpdated = new Subject<Player>();       //to server
     private id: number = 0;
     private players: Player[] = [];
     private currentPlayer: Player;
@@ -217,24 +217,24 @@ export class PlayerService {
     }
 
     fetchNewPlayer() {
-        if (this.currentPlayer) {
+        if (this.currentPlayer != null) {
             this.currentPlayer.skippedCount++;
+            this.notifyPlayerUpdateToServer(this.currentPlayer);
         }
-        let playerLeftCount = 0;
+        let playersLeftCount = 0;
         let skipCounter = 0;
         do {
             this.currentPlayer = this.players.filter(
                 function (el) {
                     if (!el.isPicked && skipCounter == el.skippedCount) {
-                        playerLeftCount++;
+                        playersLeftCount++;
                     }
                     return (el.isPicked == false && skipCounter == el.skippedCount)
                 }
-            )[Math.floor(Math.random() * playerLeftCount)];
+            )[Math.floor(Math.random() * playersLeftCount)];
             skipCounter++;
-        } while (playerLeftCount == 0)
+        } while (playersLeftCount == 0)
         this.emitNextPlayer();
-        this.notifyPlayersUpdateToServer();
     }
 
     setPlayers(players: Player[])
@@ -250,8 +250,8 @@ export class PlayerService {
         this.nextPlayerPicked.next({ 'currentPlayer': this.currentPlayer });
     }
 
-    notifyPlayersUpdateToServer()
+    notifyPlayerUpdateToServer(player: Player)
     {
-        this.playersUpdated.next(this.players);
+        this.playerUpdated.next(player);
     }
 }
