@@ -1,3 +1,4 @@
+import { DataService } from './cricket/data.service';
 import { UtilitiesService } from './shared/utilities.service';
 import { PlayerService } from './cricket/player.service';
 import { TeamService } from './cricket/team.service';
@@ -33,7 +34,7 @@ import { ImgCenterDirective } from './shared/img-center.directive';
     AppRoutingModule,
     AuthModule
   ],
-  providers: [TeamService, PlayerService, UtilitiesService],
+  providers: [TeamService, PlayerService, UtilitiesService, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

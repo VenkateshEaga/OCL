@@ -1,6 +1,7 @@
 .team-item
 {
     padding: 4px 0;
+    position: relative;
 }
 
 .auction-stats-container.full-screen .team-item
@@ -21,12 +22,21 @@
 .team-player-count
 {
     position: absolute;
-    top: -8px;
+    top: -4px;
     right: 3px;
     font-weight: bold;
     color: gold;
-    font-size: 20px;
+    font-size: 18px;
 }
-
-
+.team-full
+{
+    background-color: rgba(0, 128, 0, 0.6);
+    border-radius: 10px;
+}
+.team-item-help
+{
+    position: absolute;
+    right: 11px;
+    bottom: -11px;
+}
 
