@@ -1,0 +1,21 @@
+.scalable-container {
+    margin-top: 0px;
+    border-radius: 4px;
+}
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+.row {
+    padding-bottom: 15px;
+}
+.header{
+    font-weight: bold;
+    font-variant: small-caps;
+    text-transform: uppercase;
+}
+.red{
+    color: red;
+    font-style: italic;
+}
