@@ -33,7 +33,7 @@ export class DataService {
 
         this.playerAddedSubscription = this.teamService.playerAddedToTeam.subscribe(
             (data) => {
-                this.updateTeam(data);
+                this.AddPlayer(data);
             }
         );
 
@@ -45,7 +45,7 @@ export class DataService {
     }
 
     getPlayers() {
-        return this.http.get('/getAllPlayers').subscribe(
+        return this.http.get('http://192.168.9.188:99/api/player').subscribe(
             (response: Response) => {
                 const allPlayers: Player[] = response.json();
                 this.playerService.setPlayers(allPlayers);
@@ -54,7 +54,7 @@ export class DataService {
     }
 
     getTeams() {
-        return this.http.get('/getAllTeams').subscribe(
+        return this.http.get('http://192.168.9.188:99/api/team').subscribe(
             (response: Response) => {
                 const teams: Team[] = response.json();
                 this.teamService.setTeams(teams);
@@ -63,14 +63,11 @@ export class DataService {
     }
 
     updatePlayer(player: Player) {
-        this.http.post('/updatePlayers', player).subscribe();
+        this.http.post('http://192.168.9.188:99/api/player/updatePlayer', player).subscribe();
     }
 
     AddPlayer(data) {
-        this.http.post('/updateAddedPlayer', data).subscribe();
+        this.http.post('http://192.168.9.188:99/api/player/updateByTeamId', data).subscribe();
     }
 
-    updateTeam(team: Team) {
-        this.http.post('/updateTeam', team).subscribe();
-    }
 }

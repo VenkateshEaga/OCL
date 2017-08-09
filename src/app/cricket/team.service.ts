@@ -1,12 +1,14 @@
-import { OnInit } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
+import { OnInit } from '@angular/core';
 import { Team } from './team.model';
 import { Player } from "app/cricket/player.model";
 export class TeamService {
     fetchTeams = new Subject<void>();     //from server
     playerAddedToTeam = new Subject<any>();    //to server
+    teamsChanged = new Subject<Team[]>();
     private teamInitialAmount: number = 200000;
-    private teams: Team[] = [
+    private teams: Team[] 
+    /*= [
         new Team(1, "Avengers", "assets/team-logos/Avengers.png", [], this.teamInitialAmount, 17),
         new Team(2, "Spartans", "assets/team-logos/Spartans.png", [], this.teamInitialAmount, 17),
         new Team(3, "Royal Riders", "assets/team-logos/RR.png", [], this.teamInitialAmount, 17),
@@ -17,7 +19,7 @@ export class TeamService {
         new Team(8, "Kings XI", "assets/team-logos/KXIP.png", [], this.teamInitialAmount, 17),
         new Team(9, "Super Kings", "assets/team-logos/CSK.png", [], this.teamInitialAmount, 17),
         new Team(10, "Dare Devils", "assets/team-logos/DD.png", [], this.teamInitialAmount, 17),
-    ];
+    ];*/
     constructor() {
 
     }
@@ -25,8 +27,11 @@ export class TeamService {
     getTeams() {
         if (this.teams == null) {
             this.fetchTeams.next();
+            return this.teams ==null?[]:this.teams.slice();
         }
-        return this.teams.slice();
+        else{
+            return this.teams.slice();
+        }
     }
 
     addPlayerToTeam(teamID: number, player: Player) {
@@ -41,5 +46,6 @@ export class TeamService {
             teams = [];
         }
         this.teams = teams;
+        this.teamsChanged.next(this.teams);
     }
 }

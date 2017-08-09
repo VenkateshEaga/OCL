@@ -19,6 +19,7 @@ import { ImgCenterDirective } from './shared/img-center.directive';
 import { TeamsComponent } from './cricket/teams/teams.component';
 import { TeamComponent } from './cricket/teams/team/team.component';
 import { TeamDetailComponent } from './cricket/teams/team-detail/team-detail.component';
+import { HttpModule } from "@angular/http";
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { TeamDetailComponent } from './cricket/teams/team-detail/team-detail.com
     FormsModule, 
     AppRoutingModule,
     AuthModule,
+    HttpModule
   ],
   providers: [TeamService, PlayerService, UtilitiesService, DataService],
   bootstrap: [AppComponent]
