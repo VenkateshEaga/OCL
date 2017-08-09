@@ -38,7 +38,7 @@ import { TeamDetailComponent } from './cricket/teams/team-detail/team-detail.com
     BrowserModule,
     FormsModule, 
     AppRoutingModule,
-    AuthModule
+    AuthModule,
   ],
   providers: [TeamService, PlayerService, UtilitiesService, DataService],
   bootstrap: [AppComponent]
