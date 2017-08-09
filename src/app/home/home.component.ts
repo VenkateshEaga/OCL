@@ -1,3 +1,4 @@
+import { DataService } from './../cricket/data.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

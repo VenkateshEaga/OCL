@@ -13,7 +13,9 @@ export class Player {
         public isViceCaptain: boolean,
         public isPicked: boolean,
         public isOnNotice: boolean,
-        public moneySpentOn: number       
+        public skippedCount: number,
+        public moneySpentOn: number        
     ) 
-    {}
+    {
+    }
 }

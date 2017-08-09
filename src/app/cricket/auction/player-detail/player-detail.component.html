@@ -2,14 +2,14 @@
   <div class="row">
     <div class="col-md-12">
       <div class="player-container scalable-container" [class.full-screen]="isFullScreen">
-        <div class="scale-icon pointer">
-          <span class="glyphicon glyphicon-resize-full" *ngIf="!isFullScreen" (click)="onExpand()"></span>
-          <span class="glyphicon glyphicon-resize-small" *ngIf="isFullScreen" (click)="onMinimize()"></span>
+        <div class="scale-icon pointer" (click)="onResize()">
+          <span class="glyphicon glyphicon-resize-full" *ngIf="!isFullScreen"></span>
+          <span class="glyphicon glyphicon-resize-small" *ngIf="isFullScreen"></span>
         </div>
         <div class="content">
           <div class="img-section">
             <div class="profile-pic-container">
-              <img src="{{player.imgPath}}" alt="player">
+              <img src="{{player.imgPath}}" appImgCenter #playerImage alt="player">
             </div>
           </div>
           <div class="detail-section">

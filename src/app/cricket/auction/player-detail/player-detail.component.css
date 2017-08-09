@@ -20,29 +20,29 @@
 
 .player-container.full-screen .content
 {
-    display: inline-block;
     margin-top: 32px;
 }
 
 .player-container.full-screen .img-section
 {
-    width: 50%;
-    display: table-cell;
+    width: 40%;
+    display: inline-block;
     vertical-align: middle;
     height: auto;
 }
 
 .player-container.full-screen .img-section .profile-pic-container
 {
-    width: 70%;
-    height: auto;
+    width: 80%;
+    height: 0;
+    padding-bottom: 80%;
 }
 
 .player-container.full-screen .detail-section
 {
-    width: 50%;
+    width: 40%;
     text-align: left;
-    display: table-cell;
+    display: inline-block;
     vertical-align: middle;
 }
 
