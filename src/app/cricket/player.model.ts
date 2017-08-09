@@ -3,7 +3,7 @@ export class Player {
         public id: number,
         public name: string,
         public imgPath: string = "assets/avatar.png",
-        public teamID: number,
+        public teamId: number,
         public businessUnit: string,
         public playingRole: string,
         public battingStyle: string,

@@ -10,208 +10,16 @@ export class PlayerService {
     private currentPlayer: Player;
 
     constructor() {
-        this.players.push(
-            new Player(
-                1,
-                "Rajesh Vottem",
-                "assets/profiles/Rajesh_Vottem.jpg",
-                0,
-                "Ops",
-                "All-Rounder",
-                "Right Hand Batsman",
-                "Right Arm Off-Spin",
-                "Available for all dates",
-                false,
-                false,
-                false,
-                false,
-                0,
-                0),
-            new Player(
-                2,
-                "Veera Annem",
-                "assets/profiles/Veera.jpg",
-                0,
-                "ET",
-                "Specialist Batsman",
-                "Right Hand Batsman",
-                "Right Arm Medium",
-                "Not Available on 19-Sep-2017",
-                false,
-                false,
-                false,
-                false,
-                0,
-                0),
-            new Player(
-                3,
-                "Venkat Eaga",
-                "assets/profiles/Venkat.jpg",
-                0,
-                "ET",
-                "Wicket Keeper-Batsman",
-                "Right Hand Batsman",
-                "",
-                "Available for all dates",
-                false,
-                false,
-                false,
-                false,
-                0,
-                0),
-            new Player(
-                4,
-                "Eoin Morgan",
-                "assets/profiles/Eoin.jpg",
-                0,
-                "Int",
-                "Specialist Batsman",
-                "Left Hand Batsman",
-                "",
-                "Available for all dates",
-                false,
-                false,
-                false,
-                false,
-                0,
-                0),
-            new Player(
-                5,
-                "Sachin Tendulkar",
-                "assets/profiles/Sachin.jpg",
-                0,
-                "Int",
-                "Specialist Batsman",
-                "Right Hand Batsman",
-                "Right Arm Slow",
-                "Available for all dates",
-                false,
-                false,
-                false,
-                false,
-                0,
-                0),
-            new Player(
-                6,
-                "Virender Sehwag",
-                "assets/profiles/Sehwag.jpeg",
-                0,
-                "Int",
-                "Specialist Batsman",
-                "Right Hand Batsman",
-                "Right Arm Off-Spin",
-                "Not Available on 19-sep-2017, 26-sep-2017",
-                false,
-                false,
-                false,
-                false,
-                0,
-                0),
-            new Player(
-                7,
-                "Brett Lee",
-                "assets/profiles/Bret.jpg",
-                0,
-                "INT",
-                "Specialist Bowler",
-                "Right Hand Batsman",
-                "Right Arm Fast",
-                "Available for all dates",
-                false,
-                false,
-                false,
-                false,
-                0,
-                0),
-            new Player(
-                8,
-                "Dhoni",
-                "assets/profiles/Dhoni.jpg",
-                0,
-                "INT",
-                "Wicket Keeper-Batsman",
-                "Right Hand Batsman",
-                "Right Arm Medium",
-                "Available for all dates",
-                false,
-                false,
-                false,
-                false,
-                0,
-                0),
-            new Player(
-                9,
-                "Virat Kohli",
-                "assets/profiles/VK.jpg",
-                0,
-                "INT",
-                "Specialist Batsman",
-                "Right Hand Batsman",
-                "Right Arm Medium",
-                "Available for all dates",
-                false,
-                false,
-                false,
-                false,
-                0,
-                0),
-            new Player(
-                10,
-                "R Ashwin",
-                "assets/profiles/Ash.png",
-                0,
-                "INT",
-                "All-Rounder",
-                "Right Hand Batsman",
-                "Right Arm Off-Spin",
-                "Available for all dates",
-                false,
-                false,
-                false,
-                false,
-                0,
-                0),
+      
 
-            new Player(
-                11,
-                "Jaques Kallis",
-                "assets/profiles/Jack.jpg",
-                0,
-                "INT",
-                "All-Rounder",
-                "Right Hand Batsman",
-                "Right Arm Fast",
-                "Available for all dates",
-                false,
-                false,
-                false,
-                false,
-                0,
-                0),
-            new Player(
-                12,
-                "A.B. De Villiers",
-                "assets/profiles/ABDV.png",
-                0,
-                "INT",
-                "Specialist Batsman",
-                "Right Hand Batsman",
-                "",
-                "Available for all dates",
-                false,
-                false,
-                false,
-                false,
-                0,
-                0)
-        );
-
-        if(this.players == null)
-        {
-            this.fetchPlayers.next();
-        }
+        
     }
-
+     fetchPlayersFromdb(){
+        if(this.players.length == 0)
+            {
+                this.fetchPlayers.next();
+            }
+     }
     getCurrentPlayer() {
         return this.currentPlayer;
     }
@@ -226,10 +34,10 @@ export class PlayerService {
         do {
             this.currentPlayer = this.players.filter(
                 function (el) {
-                    if (el.teamID == 0 && skipCounter == el.skippedCount) {
+                    if (el.teamId == 0 && skipCounter == el.skippedCount) {
                         playersLeftCount++;
                     }
-                    return (el.teamID == 0 && skipCounter == el.skippedCount)
+                    return (el.teamId == 0 && skipCounter == el.skippedCount)
                 }
             )[Math.floor(Math.random() * playersLeftCount)];
             skipCounter++;

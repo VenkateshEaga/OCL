@@ -10,31 +10,13 @@ import { Response } from "@angular/http";
 @Injectable()
 export class DataService {
 
-    fetchPlayersSubscription: Subscription;
-    playerUpdatedSubscription: Subscription;
-    fetchTeamsSubscription: Subscription;
+   
 
     constructor(private playerService: PlayerService,
         private teamService: TeamService,
         private http: Http) {
 
-        this.fetchPlayersSubscription = this.playerService.fetchPlayers.subscribe(
-            () => {
-                this.getPlayers();
-            }
-        );
-
-        this.playerUpdatedSubscription = this.playerService.playerUpdated.subscribe(
-            (player: Player) => {
-                this.updatePlayer(player);
-            }
-        );
-
-        this.fetchTeamsSubscription = this.teamService.fetchTeams.subscribe(
-            () => {
-                this.getTeams();
-            }
-        );
+       
     }
 
     getPlayers() {

@@ -1,3 +1,4 @@
+import { TeamsComponent } from './cricket/teams/teams.component';
 import { TeamDetailComponent } from './cricket/teams/team-detail/team-detail.component';
 import { AuctionComponent } from './cricket/auction/auction.component';
 import { SignupComponent } from './auth/signup/signup.component';

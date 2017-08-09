@@ -1,20 +1,20 @@
 <div class="team-item">
   <form (ngSubmit)="addPlayer(playerBidForm)" #playerBidForm="ngForm">
     <div class="row" 
-      [class.team-full]="(teamItem.moneyLeft == 0) || (teamItem.playerCount == teamItem.fullTeamCount)">
+      [class.team-full]="(moneyLeftForBid() == 0 || isTeamFull())">
       <div class="col-sm-2 col-xs-8 vcenter relative">
         <div class="team-captain-profile">
           <img src="{{teamItem.logoPath}}" appImgCenter alt="Captain">
         </div>
         <div class="team-player-count">
-          {{teamItem.playerCount}}
+          {{playerCount()}}
         </div>
       </div>
       <div class="col-sm-3 col-xs-8 vcenter padding-0 align-left">
         <h4>{{teamItem.name}}</h4>
       </div>
       <div class="col-sm-2 col-xs-8 vcenter">
-        <h4>{{teamItem.moneyLeft | currency:'INR':true:'1.0-0'}}</h4>
+        <h4>{{moneyLeftForBid() | currency:'INR':true:'1.0-0'}}</h4>
       </div>
       <div class="col-sm-2 col-xs-8 vcenter padding-0">
         <input type="number" 
@@ -25,15 +25,15 @@
             required 
             #name="ngModel" 
             placeholder="Amount"
-            [disabled]="teamItem.moneyLeft == 0">
+            [disabled]="moneyLeftForBid() == 0">
       </div>
       <div class="col-sm-2 col-xs-8 vcenter padding-0">
         <button type="submit" 
             [disabled]=
             "!playerBidForm.valid || 
             !currentPlayerWrapper.currentPlayer || 
-            (name.value > teamItem.moneyLeft) || 
-            (teamItem.moneyLeft == 0)" 
+            (name.value > moneyLeftForBid()) || 
+            (moneyLeftForBid() == 0)" 
             class="btn btn-success">
             Add Player
         </button>
@@ -43,8 +43,8 @@
         <span *ngIf="!name.valid && name.touched">
           Please enter a valid bid amount
         </span>
-        <span *ngIf="name.valid && (name.value > teamItem.moneyLeft)">
-          {{teamItem.moneyLeft}} is maximum you can go for this bid!
+        <span *ngIf="name.valid && (name.value > moneyLeftForBid())">
+          {{moneyLeftForBid()}} is maximum you can go for this bid!
         </span>
     </div>
   </form>

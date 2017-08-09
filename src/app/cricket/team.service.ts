@@ -2,6 +2,7 @@ import { Subject } from 'rxjs/Subject';
 import { OnInit } from '@angular/core';
 import { Team } from './team.model';
 import { Player } from "app/cricket/player.model";
+import { environment } from "environments/environment";
 export class TeamService {
     fetchTeams = new Subject<void>();     //from server
     teamsChanged = new Subject<Team[]>();
@@ -44,5 +45,22 @@ export class TeamService {
         }
         this.teams = teams;
         this.teamsChanged.next(this.teams);
+    }
+
+
+    moneyLeft(team: Team): number
+    {
+        let moneySpent: number = 0;
+        team.players.forEach((player)=>{
+            moneySpent+= player.moneySpentOn;
+        })
+        let futureMinMoneyOnPlayers = (environment.fullTeamCount - this.playerCount(team) - 1) * 1000;
+        return environment.teamBudget - moneySpent - (futureMinMoneyOnPlayers < 0 ? 0 : futureMinMoneyOnPlayers);
+    };
+
+
+    playerCount(team: Team): number
+    {
+        return team.players ? team.players.length : 0;
     }
 }

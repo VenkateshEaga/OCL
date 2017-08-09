@@ -1,3 +1,4 @@
+import { environment } from 'environments/environment';
 import { PlayerService } from 'app/cricket/player.service';
 import { Subscription } from 'rxjs/Subscription';
 import { TeamService } from './../../../team.service';
@@ -30,12 +31,27 @@ export class AuctionTeamItemComponent implements OnInit, OnDestroy {
   addPlayer(bidForm: NgForm)
   {
     this.currentPlayerWrapper.currentPlayer.moneySpentOn = bidForm.value.bidAmount;
-    this.currentPlayerWrapper.currentPlayer.teamID = this.teamItem.id;
+    this.currentPlayerWrapper.currentPlayer.teamId = this.teamItem.id;
     this.playerService.playerUpdated.next(this.currentPlayerWrapper.currentPlayer);
     this.teamService.addPlayerToTeam(this.teamItem.id, this.currentPlayerWrapper.currentPlayer);
     bidForm.reset();
     this.currentPlayerWrapper.currentPlayer = null;
     this.playerService.nextPlayerPicked.next(this.currentPlayerWrapper);
+  }
+
+  moneyLeftForBid(): number
+  {
+    return this.teamService.moneyLeft(this.teamItem);
+  }
+
+  isTeamFull(): boolean
+  {
+    return (this.teamService.playerCount(this.teamItem) >= environment.fullTeamCount) ? true : false;
+  }
+
+  playerCount(): number
+  {
+    return this.teamService.playerCount(this.teamItem);
   }
 
   ngOnDestroy() {
