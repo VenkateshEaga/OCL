@@ -3,6 +3,7 @@ export class Player {
         public id: number,
         public name: string,
         public imgPath: string = "assets/avatar.png",
+        public teamID: number,
         public businessUnit: string,
         public playingRole: string,
         public battingStyle: string,
@@ -11,7 +12,6 @@ export class Player {
         public isWicketKeeper: boolean,
         public isCaptain: boolean,
         public isViceCaptain: boolean,
-        public isPicked: boolean,
         public isOnNotice: boolean,
         public skippedCount: number,
         public moneySpentOn: number        

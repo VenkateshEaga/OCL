@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { TeamService } from './team.service';
 import { PlayerService } from './player.service';
@@ -12,7 +12,6 @@ export class DataService {
 
     fetchPlayersSubscription: Subscription;
     playerUpdatedSubscription: Subscription;
-    playerAddedSubscription: Subscription;
     fetchTeamsSubscription: Subscription;
 
     constructor(private playerService: PlayerService,
@@ -28,12 +27,6 @@ export class DataService {
         this.playerUpdatedSubscription = this.playerService.playerUpdated.subscribe(
             (player: Player) => {
                 this.updatePlayer(player);
-            }
-        );
-
-        this.playerAddedSubscription = this.teamService.playerAddedToTeam.subscribe(
-            (data) => {
-                this.updateTeam(data);
             }
         );
 
@@ -64,10 +57,6 @@ export class DataService {
 
     updatePlayer(player: Player) {
         this.http.post('/updatePlayers', player).subscribe();
-    }
-
-    AddPlayer(data) {
-        this.http.post('/updateAddedPlayer', data).subscribe();
     }
 
     updateTeam(team: Team) {

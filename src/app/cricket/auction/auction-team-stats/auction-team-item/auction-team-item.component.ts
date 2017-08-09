@@ -30,7 +30,8 @@ export class AuctionTeamItemComponent implements OnInit, OnDestroy {
   addPlayer(bidForm: NgForm)
   {
     this.currentPlayerWrapper.currentPlayer.moneySpentOn = bidForm.value.bidAmount;
-    this.currentPlayerWrapper.currentPlayer.isPicked = true;
+    this.currentPlayerWrapper.currentPlayer.teamID = this.teamItem.id;
+    this.playerService.playerUpdated.next(this.currentPlayerWrapper.currentPlayer);
     this.teamService.addPlayerToTeam(this.teamItem.id, this.currentPlayerWrapper.currentPlayer);
     bidForm.reset();
     this.currentPlayerWrapper.currentPlayer = null;
