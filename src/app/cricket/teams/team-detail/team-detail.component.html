@@ -1,5 +1,5 @@
-<div style="padding-left: 70px;">
-  <div class="col-lg-2 col-md-3 col-sm-4 col-xs-8" *ngFor="let player of team.players">
+<div class="masonry" style="padding-left: 70px;" *ngIf="team">
+  <div class="col-lg-2 col-md-3 col-sm-4 col-xs-8 item" *ngFor="let player of team.players">
     <div class="backdrop DD">
       <div class="playerPhoto" data-player-id="2964">
         <div class="loadOverlay" style="display: none;">
@@ -8,7 +8,9 @@
             </div>
           </div>
         </div>
-        <img class="playerImage" [src]="player.imgPath==''?'assets/avatar.png':[player.imgPath]">
+        <div class="playerImage">
+          <img  [src]="player.imgPath==''?'assets/avatar.png':[player.imgPath]" appImgCenter>
+        </div>
       </div>
       <div class="badges">
         <span class="captain"></span>

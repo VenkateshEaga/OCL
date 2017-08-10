@@ -17,9 +17,10 @@
 
 /* side navigation */
 .side-nav{
-    min-height: 450px;
-    position: absolute;
+    min-height: 500px;
     height: auto;
+    position: absolute;
+    margin-left: -15px;
 }
 @import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
 

@@ -11,32 +11,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./auction.component.css']
 })
 export class AuctionComponent implements OnInit {
-    fetchPlayersSubscription: Subscription;
-    playerUpdatedSubscription: Subscription;
-    fetchTeamsSubscription: Subscription;
-  constructor(private playerService: PlayerService,
-   private dataService: DataService,
-    private teamService :TeamService) { }
+   
+  constructor(private playerService: PlayerService) { }
 
   ngOnInit() {
-     this.fetchPlayersSubscription = this.playerService.fetchPlayers.subscribe(
-            () => {
-                this.dataService.getPlayers();
-            }
-        );
-
-        this.playerUpdatedSubscription = this.playerService.playerUpdated.subscribe(
-            (player: Player) => {
-                this.dataService.updatePlayer(player);
-            }
-        );
-
-        this.fetchTeamsSubscription = this.teamService.fetchTeams.subscribe(
-            () => {
-                this.dataService.getTeams();
-            }
-        );
-        this.playerService.fetchPlayersFromdb();
+     
   }
 
   onFetchPlayerClick()

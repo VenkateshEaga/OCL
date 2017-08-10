@@ -1,6 +1,8 @@
 <li>
-  <a [routerLink]="[team.id]" routerLinkActive="active">
-                        <img class="fa nav-icon" [src]="[team.logoPath]"/>
+  <a [routerLink]="[team.id]"  routerLinkActive="active">
+    <div class="nav"> 
+                        <img class="fa nav-icon" [src]="[team.logoPath]" appImgCenter />
+                        </div>
                         <span class="nav-text">
                             {{team.name}}
                         </span>

@@ -1,3 +1,4 @@
+import { Subscription } from 'rxjs/Subscription';
 import { TeamService } from 'app/cricket/team.service';
 import { Team } from 'app/cricket/team.model';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -10,7 +11,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TeamDetailComponent implements OnInit {
   id:number;
-  team: Team
+  team: Team ;
+  teamSubscription : Subscription;
   constructor(private route:ActivatedRoute, private teamService:TeamService) { }
 
   ngOnInit() {
@@ -18,6 +20,11 @@ export class TeamDetailComponent implements OnInit {
       (params: Params) =>{
         this.id= +params['id'];
        this.team= this.teamService.getTeam(this.id);
+      }
+    )
+    this.teamSubscription = this.teamService.teamsChanged.subscribe(
+      (teams :Team[]) =>{
+              this.team=teams.find(x => x.id === this.id);
       }
     )
   }
