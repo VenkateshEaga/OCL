@@ -31,7 +31,7 @@
         <button type="submit" 
             [disabled]=
             "!playerBidForm.valid || 
-            !currentPlayerWrapper.currentPlayer || 
+            !currentPlayer || 
             (name.value > moneyLeftForBid()) || 
             (moneyLeftForBid() == 0)" 
             class="btn btn-success">

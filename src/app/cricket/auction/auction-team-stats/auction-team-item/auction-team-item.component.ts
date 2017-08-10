@@ -1,3 +1,4 @@
+import { Player } from 'app/cricket/player.model';
 import { environment } from 'environments/environment';
 import { PlayerService } from 'app/cricket/player.service';
 import { Subscription } from 'rxjs/Subscription';
@@ -16,27 +17,25 @@ import { Component, OnInit, ViewEncapsulation, Input, OnDestroy } from '@angular
 export class AuctionTeamItemComponent implements OnInit, OnDestroy {
   
   @Input() teamItem: Team;
-  currentPlayerWrapper: any = {'currentPlayer': null};
+  currentPlayer: Player;
   nextPlayerPickedSubscription: Subscription;
   constructor(private teamService: TeamService, private playerService: PlayerService ) { }
 
   ngOnInit() {
       this.nextPlayerPickedSubscription =  this.playerService.nextPlayerPicked.subscribe(
-        ((currentPlayerWrapper: any) => {
-          this.currentPlayerWrapper = currentPlayerWrapper;
+        ((player: Player) => {
+          this.currentPlayer = player;
         })
       )
   }
 
   addPlayer(bidForm: NgForm)
   {
-    this.currentPlayerWrapper.currentPlayer.moneySpentOn = bidForm.value.bidAmount;
-    this.currentPlayerWrapper.currentPlayer.teamId = this.teamItem.id;
-    this.playerService.playerUpdated.next(this.currentPlayerWrapper.currentPlayer);
-    this.teamService.addPlayerToTeam(this.teamItem.id, this.currentPlayerWrapper.currentPlayer);
+    this.currentPlayer.moneySpentOn = bidForm.value.bidAmount;
+    this.currentPlayer.teamId = this.teamItem.id;
+    this.playerService.playerUpdated.next(this.currentPlayer);
+    this.teamService.addPlayerToTeam(this.teamItem.id, this.currentPlayer);
     bidForm.reset();
-    this.currentPlayerWrapper.currentPlayer = null;
-    this.playerService.nextPlayerPicked.next(this.currentPlayerWrapper);
   }
 
   moneyLeftForBid(): number

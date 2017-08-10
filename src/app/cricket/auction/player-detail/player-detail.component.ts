@@ -23,8 +23,8 @@ export class PlayerDetailComponent implements OnInit, AfterViewChecked {
 
   ngOnInit() {
     this.nextPlayerPickedSubscription = this.playerService.nextPlayerPicked.subscribe(
-      (newPlayerObject: any) => {
-        this.player = newPlayerObject.currentPlayer;
+      (player: any) => {
+        this.player = player;
         this.isFullScreen = true;
       });
   }
