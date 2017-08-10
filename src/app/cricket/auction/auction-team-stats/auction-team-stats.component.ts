@@ -9,7 +9,7 @@ import { TeamService } from "app/cricket/team.service";
   styleUrls: ['./auction-team-stats.component.css']
 })
 export class AuctionTeamStatsComponent implements OnInit, OnDestroy {
-  subscription : Subscription;
+  teamSubscription : Subscription;
   isFullScreen: boolean = false;
   teams: Team[] =[];
 
@@ -17,7 +17,7 @@ export class AuctionTeamStatsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.teams = this.teamService.getTeams();
-    this.subscription = this.teamService.teamsChanged.subscribe(
+    this.teamSubscription = this.teamService.teamsChanged.subscribe(
       (teams :Team[]) =>{
               this.teams=teams;
       }
@@ -25,7 +25,7 @@ export class AuctionTeamStatsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(){
-    this.subscription.unsubscribe();
+    this.teamSubscription.unsubscribe();
   }
   onExpand()
   {

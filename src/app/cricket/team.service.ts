@@ -46,7 +46,9 @@ export class TeamService {
         this.teams = teams;
         this.teamsChanged.next(this.teams);
     }
-
+    getTeam(id:number){
+       return this.getTeams().find(x => x.id === id);
+    }
 
     moneyLeft(team: Team): number
     {

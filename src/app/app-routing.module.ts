@@ -12,7 +12,9 @@ const routes: Routes = [
     { path: 'signin', component: SigninComponent },
     { path: 'signup', component: SignupComponent },
     { path: 'auction', component: AuctionComponent },
-    { path: 'teams', component: TeamsComponent }
+    { path: 'teams', component: TeamsComponent, children:[
+        { path:':id', component:TeamDetailComponent},
+    ] }
 ]
 
 @NgModule({

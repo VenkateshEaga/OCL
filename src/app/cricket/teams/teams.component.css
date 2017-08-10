@@ -4,7 +4,7 @@
     left:0;
     background-color: #ece9e9;
     width: 100%;
-    min-height: 100 vh;
+    min-height: 100vh;
     height:auto;
     margin-top: -23px;
     font-family: Titillium Web,sans-serif;
@@ -14,111 +14,17 @@
 .row{
     padding-top: 30px;
 }
-.backdrop.DD {
-    background-color: #b71f1f;
-    color: #fff;
-    text-align: center;
-}
-.backdrop {
-    /* background-image: url(../i/stats-bgs/DD.png); */
-    background-size: cover;
-}
- .backdrop {
-    background-color: transparent;
-    background-position: 100% 0;
-    background-repeat: no-repeat;
-    background-size: auto 100%;
-}
-.details {
-    background: -webkit-linear-gradient(bottom,#b71f1f 71%,rgba(255,0,0,0));
-    background: linear-gradient(0deg,#b71f1f 71%,rgba(255,0,0,0));
-    border-radius: 5px;
-    margin-top: -60px;
-    padding: 10px;
-    position: relative;
-}
-.player-name{
-        color: #fff;
-        font-size: 14px;
-        line-height: 1.6;
-        margin-top: 0;
-    margin-bottom: 0;
-}
- .badges .captain {
-    background-position: -290px -277px;
-  /*  background-image: url(../i/sprites/global-sprite.png);*/
-    background-repeat: no-repeat;
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-}
-.season {
-    color: hsla(0,0%,100%,.5);
-    font-size: 10px;
-}
-.stats {
-    margin: 5px auto 10px;
-    overflow: auto;
-    width: 100%;
-    padding: 0;
-}
-li {
-    margin-bottom: 1rem;
-    list-style-type: none;
-}
-li a i{
-    list-style-type: upper-roman;
-}
- .stats li {
-    border-right: 1px solid hsla(0,0%,100%,.2);
-    float: left;
-    overflow: hidden;
-    text-align: center;
-    width: 50%;
-}
-.stats li .label,  .stats li .value {
-    display: block;
-    font-size: 10px;
-    line-height: 14px;
-    vertical-align: top;
-    width: 100%;
-}
- .stats li .label {
-    color: hsla(0,0%,100%,.5);
-}
-.stats li .value {
-    font-size: 16px;
-    line-height: 16px;
-}
-.stats li:last-child {
-    border-right: 0;
-}
-.col-lg-2{
-    padding-bottom: 15px;
-}
-.right-content {
-    margin-left:35px;
-}
+
 /* side navigation */
 .side-nav{
-    min-height: 400px;
+    min-height: 500px;
+    height: auto;
     position: absolute;
+    margin-left: -15px;
 }
 @import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
 
 @import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
-.fa-2x {
-font-size: 2em;
-}
-.fa {
-position: relative;
-display: table-cell;
-width: 60px;
-height: 36px;
-text-align: center;
-vertical-align: middle;
-font-size:20px;
-}
 
 
 .main-menu:hover,nav.main-menu.expanded {

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Team } from 'app/cricket/team.model';
+import { Component, OnInit, Input } from '@angular/core';
+
 
 @Component({
   selector: 'app-team',
@@ -6,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./team.component.css']
 })
 export class TeamComponent implements OnInit {
+  @Input() team :Team;
+  
   constructor() { }
 
   ngOnInit() {
