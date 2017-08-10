@@ -1,3 +1,8 @@
-<p>
-  team works!
-</p>
+<li>
+  <a [routerLink]="[team.id]" routerLinkActive="active">
+                        <img class="fa nav-icon" [src]="[team.logoPath]"/>
+                        <span class="nav-text">
+                            {{team.name}}
+                        </span>
+                    </a>
+</li>

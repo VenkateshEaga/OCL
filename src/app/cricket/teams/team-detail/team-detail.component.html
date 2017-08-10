@@ -1,3 +1,27 @@
-<p>
-  team-detail works!
-</p>
+<div style="padding-left: 70px;">
+  <div class="col-lg-2 col-md-3 col-sm-4 col-xs-8" *ngFor="let player of team.players">
+    <div class="backdrop DD">
+      <div class="playerPhoto" data-player-id="2964">
+        <div class="loadOverlay" style="display: none;">
+          <div class="loadOverlayContent">
+            <div class="loadAnimate">
+            </div>
+          </div>
+        </div>
+        <img class="playerImage" [src]="player.imgPath==''?'assets/avatar.png':[player.imgPath]">
+      </div>
+      <div class="badges">
+        <span class="captain"></span>
+      </div>
+    </div>
+    <div class="details">
+      <p class="player-name"><strong>{{player.name}}</strong></p>
+      <span class="season">OCL 2017</span>
+      <ul class="stats">
+        <li> <span class="label">Role</span> <span class="value">{{player.playingRole}}</span> </li>
+        <li> <span class="label">Bid</span> <span class="value">{{player.moneySpentOn}}</span> </li>
+
+      </ul>
+    </div>
+  </div>
+</div>
