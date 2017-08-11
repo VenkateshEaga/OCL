@@ -28,5 +28,8 @@ export class TeamDetailComponent implements OnInit {
       }
     )
   }
+  imgPath(logoPath:string){
+    return logoPath==""||logoPath==null?"assets/avatar.png":logoPath;
+  }
 
 }

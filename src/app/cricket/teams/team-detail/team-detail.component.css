@@ -30,9 +30,14 @@
         margin-top: 0;
     margin-bottom: 0;
 }
+.badges{
+        top: 10%;
+    left: 57%;
+    position: absolute;
+}
  .badges .captain {
     background-position: -290px -277px;
-  /*  background-image: url(../i/sprites/global-sprite.png);*/
+    background-image: url(/assets/icons/global-sprite.png);
     background-repeat: no-repeat;
     display: inline-block;
     width: 20px;
@@ -91,4 +96,17 @@ li a i{
     
     overflow: hidden;
     margin: 0 auto; 
+}
+.masonry {
+
+ -moz-column-gap: 1em;
+ -webkit-column-gap: 1em; 
+  
+}
+.item{
+     display: inline-block;
+ margin:  0.25rem;
+ padding:  1rem;
+ width : 16%;
+ background:  #efefef;
 }
