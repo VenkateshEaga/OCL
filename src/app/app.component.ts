@@ -6,22 +6,22 @@ import { DataService } from './cricket/data.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  title = 'OCL';
-   fetchPlayersSubscription: Subscription;
+    title = 'OCL';
+    fetchPlayersSubscription: Subscription;
     playerUpdatedSubscription: Subscription;
     fetchTeamsSubscription: Subscription;
-  constructor(private playerService: PlayerService,
-   private dataService: DataService,
-    private teamService :TeamService){
+    constructor(private playerService: PlayerService,
+        private dataService: DataService,
+        private teamService: TeamService) {
 
-  }
-  ngOnInit(){
-    this.fetchPlayersSubscription = this.playerService.fetchPlayers.subscribe(
+    }
+    ngOnInit() {
+        this.fetchPlayersSubscription = this.playerService.fetchPlayers.subscribe(
             () => {
                 this.dataService.getPlayers();
             }
@@ -39,10 +39,10 @@ export class AppComponent implements OnInit, OnDestroy {
             }
         );
         this.playerService.fetchPlayersFromdb();
-  }
-  ngOnDestroy(){
-    this.fetchPlayersSubscription.unsubscribe();
-    this.fetchTeamsSubscription.unsubscribe();
-    this.playerUpdatedSubscription.unsubscribe();
-  }
+    }
+    ngOnDestroy() {
+        this.fetchPlayersSubscription.unsubscribe();
+        this.fetchTeamsSubscription.unsubscribe();
+        this.playerUpdatedSubscription.unsubscribe();
+    }
 }

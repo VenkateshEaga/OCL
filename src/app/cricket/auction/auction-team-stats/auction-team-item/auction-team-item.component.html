@@ -3,7 +3,7 @@
     <div class="row" 
       [class.team-full]="(moneyLeftForBid() == 0 || isTeamFull())">
       <div class="col-sm-2 col-xs-8 vcenter relative">
-        <div class="team-captain-profile">
+        <div class="team-captain-profile" [routerLink]="['/teams', teamItem.id]">
           <img src="{{teamItem.logoPath}}" appImgCenter alt="Captain">
         </div>
         <div class="team-player-count">
@@ -11,7 +11,7 @@
         </div>
       </div>
       <div class="col-sm-3 col-xs-8 vcenter padding-0 align-left">
-        <h4>{{teamItem.name}}</h4>
+        <span class="team-name" [routerLink]="['/teams', teamItem.id]">{{teamItem.name}}</span>
       </div>
       <div class="col-sm-2 col-xs-8 vcenter">
         <h4>{{moneyLeftForBid() | currency:'INR':true:'1.0-0'}}</h4>
