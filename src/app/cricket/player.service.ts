@@ -1,22 +1,26 @@
+import { Subscription } from 'rxjs/Subscription';
+import { TeamService } from 'app/cricket/team.service';
+import { Injectable, OnInit } from '@angular/core';
 import { Player } from 'app/cricket/player.model';
-import { OnInit } from '@angular/core';
 import { Subject } from "rxjs/Subject";
+@Injectable()
 export class PlayerService {
     nextPlayerPicked = new Subject<Player>();     //to other components and services
     fetchPlayers = new Subject<void>();        //from server
     playerUpdated = new Subject<Player>();       //to server
+    noCurrentPlayerSubscription: Subscription;
     private id: number = 0;
     private players: Player[] = [];
     private currentPlayer: Player;
 
-    constructor() {
-        /*this.players.push(
+    constructor(private teamService: TeamService) {
+        this.players.push(
             new Player(
                 1,
                 "Rajesh Vottem",
                 "assets/profiles/Rajesh_Vottem.jpg",
                 0,
-                "Ops",
+                "OPS",
                 "All-Rounder",
                 "Right Hand Batsman",
                 "Right Arm Off-Spin",
@@ -64,7 +68,7 @@ export class PlayerService {
                 "Eoin Morgan",
                 "assets/profiles/Eoin.jpg",
                 0,
-                "Int",
+                "INT",
                 "Specialist Batsman",
                 "Left Hand Batsman",
                 "",
@@ -80,7 +84,7 @@ export class PlayerService {
                 "Sachin Tendulkar",
                 "assets/profiles/Sachin.jpg",
                 0,
-                "Int",
+                "INT",
                 "Specialist Batsman",
                 "Right Hand Batsman",
                 "Right Arm Slow",
@@ -96,7 +100,7 @@ export class PlayerService {
                 "Virender Sehwag",
                 "assets/profiles/Sehwag.jpeg",
                 0,
-                "Int",
+                "INT",
                 "Specialist Batsman",
                 "Right Hand Batsman",
                 "Right Arm Off-Spin",
@@ -204,7 +208,14 @@ export class PlayerService {
                 false,
                 0,
                 0)
-        );*/
+        );
+
+        this.noCurrentPlayerSubscription =  this.teamService.currentPlayerStatusChanged.subscribe(
+            () =>
+            {
+                this.currentPlayer = null;
+            }
+        );
     }
 
     fetchPlayersFromdb() {
@@ -260,5 +271,9 @@ export class PlayerService {
 
     notifyPlayerUpdateToServer(player: Player) {
         this.playerUpdated.next(player);
+    }
+
+    ngOnDestroy() {
+        this.noCurrentPlayerSubscription.unsubscribe();
     }
 }

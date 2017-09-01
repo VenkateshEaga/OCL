@@ -6,5 +6,11 @@
 export const environment = {
   production: false,
   teamBudget: 200000,
-  fullTeamCount: 17
+  fullTeamCount: 17,
+  applyDEPConstraint: true,
+  departmentConstraints: {
+    'ET' : 1,
+    'OPS' : 1,
+    'INT': 3
+  }
 };

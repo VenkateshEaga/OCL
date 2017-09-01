@@ -37,9 +37,18 @@ body{
     background: linear-gradient(skyblue, midnightblue); /* Standard syntax */
 }
 
+.error-span
+{
+    color: red;
+    background-color: lightgray;
+    padding: 2px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
 .form-container
 {
-    background-color: rgba(255, 69, 0, 0.4);
+    background-color: rgba(128, 0, 128, 0.6);
     padding: 32px;
     border-radius: 10px;
     margin-top: 32px;

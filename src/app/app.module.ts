@@ -1,3 +1,4 @@
+import { CanDeactivateGaurd } from './shared/can-deactivate-gaurd.service';
 import { DataService } from './cricket/data.service';
 import { UtilitiesService } from './shared/utilities.service';
 import { PlayerService } from './cricket/player.service';
@@ -42,7 +43,7 @@ import { HttpModule } from "@angular/http";
     AuthModule,
     HttpModule
   ],
-  providers: [TeamService, PlayerService, UtilitiesService, DataService],
+  providers: [TeamService, PlayerService, UtilitiesService, DataService, CanDeactivateGaurd],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

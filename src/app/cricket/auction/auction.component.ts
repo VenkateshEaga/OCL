@@ -1,3 +1,4 @@
+import { canDeactivateComponent } from './../../shared/can-deactivate-gaurd.service';
 import { TeamService } from './../team.service';
 import { Player } from 'app/cricket/player.model';
 import { Subscription } from 'rxjs/Subscription';
@@ -10,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './auction.component.html',
   styleUrls: ['./auction.component.css']
 })
-export class AuctionComponent implements OnInit {
+export class AuctionComponent implements OnInit, canDeactivateComponent {
    
   constructor(private playerService: PlayerService) { }
 
@@ -21,6 +22,19 @@ export class AuctionComponent implements OnInit {
   onFetchPlayerClick()
   {
     this.playerService.fetchNewPlayer();
+  }
+
+  canDeactivate()
+  {
+    if(this.playerService.getCurrentPlayer() != undefined)
+    {
+      alert('You are not allowed to leave this page as there is a player for auction!');
+      return false;
+    }
+    else
+    {
+      return true;
+    }
   }
 
 }

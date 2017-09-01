@@ -15,42 +15,48 @@ import { Component, OnInit, ViewEncapsulation, Input, OnDestroy } from '@angular
   encapsulation: ViewEncapsulation.None
 })
 export class AuctionTeamItemComponent implements OnInit, OnDestroy {
-  
+
   @Input() teamItem: Team;
   currentPlayer: Player;
   nextPlayerPickedSubscription: Subscription;
-  constructor(private teamService: TeamService, private playerService: PlayerService ) { }
+  constructor(private teamService: TeamService, private playerService: PlayerService) { }
 
   ngOnInit() {
-      this.nextPlayerPickedSubscription =  this.playerService.nextPlayerPicked.subscribe(
-        ((player: Player) => {
-          this.currentPlayer = player;
-        })
-      )
+    this.nextPlayerPickedSubscription = this.playerService.nextPlayerPicked.subscribe(
+      ((player: Player) => {
+        this.currentPlayer = player;
+      })
+    )
   }
 
-  addPlayer(bidForm: NgForm)
-  {
+  addPlayer(bidForm: NgForm) {
     this.currentPlayer.moneySpentOn = bidForm.value.bidAmount;
     this.currentPlayer.teamId = this.teamItem.id;
     this.playerService.playerUpdated.next(this.currentPlayer);
     this.teamService.addPlayerToTeam(this.teamItem.id, this.currentPlayer);
+    this.currentPlayer = null;
     bidForm.reset();
   }
 
-  moneyLeftForBid(): number
-  {
+  moneyLeftForBid(): number {
     return this.teamService.moneyLeft(this.teamItem);
   }
 
-  isTeamFull(): boolean
-  {
+  isTeamFull(): boolean {
     return (this.teamService.playerCount(this.teamItem) >= environment.fullTeamCount) ? true : false;
   }
 
-  playerCount(): number
-  {
+  playerCount(): number {
     return this.teamService.playerCount(this.teamItem);
+  }
+
+  isTeamEligibileForCurrentPlayer(): boolean {
+    if (!this.currentPlayer) {
+      return true;
+    }
+    else {
+      return this.teamService.isTeamEligibleForCurrentPlayer(this.currentPlayer, this.teamItem);
+    }
   }
 
   ngOnDestroy() {

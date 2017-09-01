@@ -29,11 +29,25 @@
     color: gold;
     font-size: 18px;
 }
+
+.team-wrapper
+{
+    width: 98%;
+    margin: 0 1%;
+}
+
+.auction-stats-container.full-screen .team-wrapper
+{
+    width: 90%;
+    margin: 0 5%;
+}
+
 .team-full
 {
-    background-color: rgba(0, 128, 0, 0.6);
+    background: cadetblue;
     border-radius: 10px;
 }
+
 .team-item-help
 {
     position: absolute;

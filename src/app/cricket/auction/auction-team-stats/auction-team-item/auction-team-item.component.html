@@ -1,49 +1,46 @@
 <div class="team-item">
   <form (ngSubmit)="addPlayer(playerBidForm)" #playerBidForm="ngForm">
-    <div class="row" 
-      [class.team-full]="(moneyLeftForBid() == 0 || isTeamFull())">
-      <div class="col-sm-2 col-xs-8 vcenter relative">
-        <div class="team-captain-profile" [routerLink]="['/teams', teamItem.id]">
-          <img src="{{teamItem.logoPath}}" appImgCenter alt="Captain">
+    <div class="row">
+      <div class="team-wrapper" [class.team-full]="(moneyLeftForBid() == 0 || isTeamFull() || !isTeamEligibileForCurrentPlayer())">
+        <div class="col-sm-2 col-xs-8 vcenter relative">
+          <div class="team-captain-profile" [routerLink]="['/teams', teamItem.id]">
+            <img src="{{teamItem.logoPath}}" appImgCenter alt="Captain">
+          </div>
+          <div class="team-player-count">
+            {{playerCount()}}
+          </div>
         </div>
-        <div class="team-player-count">
-          {{playerCount()}}
+        <div class="col-sm-3 col-xs-8 vcenter padding-0 align-left">
+          <span class="team-name" [routerLink]="['/teams', teamItem.id]">{{teamItem.name}}</span>
         </div>
-      </div>
-      <div class="col-sm-3 col-xs-8 vcenter padding-0 align-left">
-        <span class="team-name" [routerLink]="['/teams', teamItem.id]">{{teamItem.name}}</span>
-      </div>
-      <div class="col-sm-2 col-xs-8 vcenter">
-        <h4>{{moneyLeftForBid() | currency:'INR':true:'1.0-0'}}</h4>
-      </div>
-      <div class="col-sm-2 col-xs-8 vcenter padding-0">
-        <input type="number" 
-            name="bidAmount" 
-            class="form-control" 
-            maxlength="6" 
-            ngModel 
-            required 
-            #name="ngModel" 
-            placeholder="Amount"
-            [disabled]="moneyLeftForBid() == 0">
-      </div>
-      <div class="col-sm-2 col-xs-8 vcenter padding-0">
-        <button type="submit" 
-            [disabled]=
-            "!playerBidForm.valid || 
+        <div class="col-sm-2 col-xs-8 vcenter">
+          <h4>{{moneyLeftForBid() | currency:'INR':true:'1.0-0'}}</h4>
+        </div>
+        <div class="col-sm-2 col-xs-8 vcenter padding-0">
+          <input type="number" 
+              name="bidAmount" 
+              class="form-control" 
+              maxlength="6" step="1000" 
+              ngModel 
+              required 
+              #name="ngModel" 
+              placeholder="Amount"
+              [disabled]="moneyLeftForBid() == 0 || !currentPlayer || !isTeamEligibileForCurrentPlayer()"
+              pattern="([1-9][0-9]*)000">
+        </div>
+        <div class="col-sm-2 col-xs-8 vcenter padding-0">
+          <button type="submit" 
+          [disabled]="!playerBidForm.valid || 
             !currentPlayer || 
             (name.value > moneyLeftForBid()) || 
-            (moneyLeftForBid() == 0)" 
-            class="btn btn-success">
+            (moneyLeftForBid() == 0)" class="btn btn-success">
             Add Player
         </button>
+        </div>
       </div>
     </div>
     <div class="team-item-help help-block">
-        <span *ngIf="!name.valid && name.touched">
-          Please enter a valid bid amount
-        </span>
-        <span *ngIf="name.valid && (name.value > moneyLeftForBid())">
+      <span class="error-span" *ngIf="name.valid && (name.value > moneyLeftForBid())">
           {{moneyLeftForBid()}} is maximum you can go for this bid!
         </span>
     </div>
