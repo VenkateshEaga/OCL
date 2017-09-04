@@ -4,7 +4,7 @@ import { Player } from 'app/cricket/player.model';
 import { Subscription } from 'rxjs/Subscription';
 import { DataService } from './../data.service';
 import { PlayerService } from './../player.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-auction',
@@ -24,6 +24,7 @@ export class AuctionComponent implements OnInit, canDeactivateComponent {
     this.playerService.fetchNewPlayer();
   }
 
+  @HostListener('window:beforeunload')
   canDeactivate()
   {
     if(this.playerService.getCurrentPlayer() != undefined)
