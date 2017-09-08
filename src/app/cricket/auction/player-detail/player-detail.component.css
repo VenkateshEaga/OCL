@@ -16,11 +16,13 @@
 .player-container.full-screen
 {
     display: table-row;
+    height: 75%;
+    top: 130px;
 }
 
 .player-container.full-screen .content
 {
-    margin-top: 32px;
+    margin-top: 8px;
 }
 
 .player-container.full-screen .img-section
