@@ -8,18 +8,18 @@ export class TeamService {
     teamsChanged = new Subject<Team[]>();
     currentPlayerStatusChanged = new Subject<void>();
     private teams: Team[]
-    = [
-        new Team(1, "Avengers", "assets/team-logos/Avengers.png", []),
-        new Team(2, "Spartans", "assets/team-logos/Spartans.png", []),
-        new Team(3, "Royal Riders", "assets/team-logos/RR.png", []),
-        new Team(4, "Blazing FireBirds", "assets/team-logos/FB.png", []),
-        new Team(5, "Sunrisers", "assets/team-logos/SRH.png", []),
-        new Team(6, "Royal Challengers", "assets/team-logos/RCB.png", []),
-        new Team(7, "Mumbai Indians", "assets/team-logos/MI.png", []),
-        new Team(8, "Kings XI", "assets/team-logos/KXIP.png", []),
-        new Team(9, "Super Kings", "assets/team-logos/CSK.png", []),
-        new Team(10, "Dare Devils", "assets/team-logos/DD.png", []),
-    ];
+  //  = [
+        // new Team(1, "Avengers", "assets/team-logos/Avengers.png", []),
+        // new Team(2, "Spartans", "assets/team-logos/Spartans.png", []),
+        // new Team(3, "Royal Riders", "assets/team-logos/RR.png", []),
+        // new Team(4, "Blazing FireBirds", "assets/team-logos/FB.png", []),
+        // new Team(5, "Sunrisers", "assets/team-logos/SRH.png", []),
+        // new Team(6, "Royal Challengers", "assets/team-logos/RCB.png", []),
+        // new Team(7, "Mumbai Indians", "assets/team-logos/MI.png", []),
+        // new Team(8, "Kings XI", "assets/team-logos/KXIP.png", []),
+        // new Team(9, "Super Kings", "assets/team-logos/CSK.png", []),
+        // new Team(10, "Dare Devils", "assets/team-logos/DD.png", []),
+   // ];
     constructor() {
 
     }
@@ -67,7 +67,7 @@ export class TeamService {
     isTeamEligibleForCurrentPlayer(currentPlayer: Player, currentTeam: Team) {
         if (environment.applyDEPConstraint) {
             let sameDepPlayers: number = currentTeam.players.filter((player: Player) => {
-                return (player.businessUnit == currentPlayer.businessUnit && !player.isCaptain)
+                return (player.businessUnit == currentPlayer.businessUnit && !player.isCaptain && !player.isViceCaptain)
             }).length;
             return environment.departmentConstraints[currentPlayer.businessUnit] > sameDepPlayers;
         }
