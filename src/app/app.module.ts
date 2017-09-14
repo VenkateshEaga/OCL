@@ -1,3 +1,5 @@
+import { AuthGuard } from './shared/auth-guard.service';
+import { AuthService } from './shared/auth.service';
 import { CanDeactivateGaurd } from './shared/can-deactivate-gaurd.service';
 import { DataService } from './cricket/data.service';
 import { UtilitiesService } from './shared/utilities.service';
@@ -43,7 +45,9 @@ import { HttpModule } from "@angular/http";
     AuthModule,
     HttpModule
   ],
-  providers: [TeamService, PlayerService, UtilitiesService, DataService, CanDeactivateGaurd],
+  providers: [TeamService, PlayerService, UtilitiesService, 
+              DataService, CanDeactivateGaurd,AuthService,
+              AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

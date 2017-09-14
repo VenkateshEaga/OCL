@@ -31,9 +31,9 @@
     margin-bottom: 0;
 }
 .badges{
-        top: 10%;
-    left: 57%;
     position: absolute;
+    margin-left: 15px;
+    margin-top: 6px;
 }
  .badges .captain {
     background-position: -290px -277px;
