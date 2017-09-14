@@ -9,8 +9,11 @@ export const environment = {
   fullTeamCount: 17,
   applyDEPConstraint: true,
   departmentConstraints: {
-    'ET' : 1,
-    'OPS' : 1,
-    'INT': 3
+    'EA' : 2,
+    'Ops' : 3,
+    'ET-Macys': 5,
+    'ET-Engg': 3,
+    'ET-GAP': 2,
+    'ET-Others': 3  
   }
 };

@@ -43,6 +43,11 @@ export class PlayerDetailComponent implements OnInit, AfterViewChecked {
     this.isFullScreen = !this.isFullScreen;
   }
 
+  isAvailable()
+  {
+    return !this.player.availability.startsWith("Not");
+  }
+
   ngOnDestroy() {
     this.nextPlayerPickedSubscription.unsubscribe();
   }

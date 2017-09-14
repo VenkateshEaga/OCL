@@ -9,7 +9,7 @@
         <div class="content">
           <div class="img-section">
             <div class="profile-pic-container">
-              <img src="{{player.imgPath}}" appImgCenter #playerImage alt="player">
+              <img src="{{player.imgPath}}" appImgCenter #playerImage alt="player" onError="this.src='assets/avtar.png'">
             </div>
           </div>
           <div class="detail-section">
@@ -20,8 +20,10 @@
             <div class="details">
               <h4>{{player.playingRole}}</h4>
               <h4>{{player.battingStyle}}</h4>
-              <h4>{{player.bowlingStyle}}</h4>
-              <h5>{{player.availability}}</h5>
+              <h4 *ngIf="player.bowlingStyle != 'NULL'">{{player.bowlingStyle}}</h4>
+              <div [ngClass]="{'red-bg' : !isAvailable()}">
+                <h5>{{player.availability}}</h5>
+              </div>
             </div>
           </div>
         </div>

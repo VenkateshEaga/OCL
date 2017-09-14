@@ -62,3 +62,10 @@
 {
   font-size: 21px;   
 }
+
+.player-container .red-bg
+{
+    background-color: red;
+    padding: 10px;
+    border-radius: 10px;
+}
