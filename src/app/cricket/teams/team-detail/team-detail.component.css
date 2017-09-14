@@ -30,6 +30,9 @@
         margin-top: 0;
     margin-bottom: 0;
 }
+.player-name span{
+    font-size: 10px;
+}
 .badges{
     position: absolute;
     margin-left: 15px;
@@ -42,6 +45,19 @@
     display: inline-block;
     width: 20px;
     height: 20px;
+}
+.badges .vice-captain {
+    background-position: -290px -277px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+.badges .wicket-keeper {
+    background-position: -290px -277px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-left: 24px;
 }
 .season {
     color: hsla(0,0%,100%,.5);
