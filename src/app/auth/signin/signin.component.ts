@@ -1,3 +1,5 @@
+import { Router, ActivatedRoute } from '@angular/router';
+import { AuthService } from './../../shared/auth.service';
 import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,13 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SigninComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService:AuthService, private router:Router, private route :ActivatedRoute) { }
 
   ngOnInit() {
   }
 
   onSubmit(form: NgForm)
   {
-    console.log(form);
+    this.authService.islogin(form.value.username,form.value.password);
+    this.router.navigate(['/auction'],{relativeTo:this.route});
   }
 }
