@@ -11,6 +11,13 @@
         <div class="badges" *ngIf="player.isCaptain">
           <span class="captain"></span>
         </div>
+        <div class="badges" *ngIf="player.isViceCaptain">
+          <span class="vice-captain">(vc)</span>
+        </div>
+        <div class="badges" *ngIf="player.isWicketKeeper">
+          <span class="wicket-keeper">(wk)</span>
+        </div>
+        
         <div class="playerImage">
           <img [src]="imgPath(player.imgPath)" appImgCenter onError="this.src='assets/avatar.png'">
         </div>
@@ -19,11 +26,13 @@
     </div>
     <div class="details">
       <p class="player-name"><strong>{{player.name}}</strong></p>
+      <p class="player-name">
+        <span  *ngIf="!player.isCaptain && !player.isViceCaptain"> ({{player.businessUnit}})</span></p>
       <span class="season">OCL 2017</span>
+     
       <ul class="stats">
         <li> <span class="label">Role</span> <span class="value">{{player.playingRole}}</span> </li>
         <li> <span class="label">Bid</span> <span class="value">{{player.moneySpentOn}}</span> </li>
-
       </ul>
     </div>
   </div>
