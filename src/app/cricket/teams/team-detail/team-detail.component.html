@@ -12,7 +12,7 @@
           <span class="captain"></span>
         </div>
         <div class="playerImage">
-          <img [src]="imgPath(player.imgPath)" appImgCenter>
+          <img [src]="imgPath(player.imgPath)" appImgCenter onError="this.src='assets/avatar.png'">
         </div>
       </div>
 
