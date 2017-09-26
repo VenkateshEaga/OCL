@@ -25,7 +25,7 @@
               required 
               #name="ngModel" 
               placeholder="Amount"
-              [disabled]="moneyLeftForBid() == 0 || !currentPlayer || !isTeamEligibileForCurrentPlayer()"
+              [disabled]="moneyLeftForBid() == 0 || !currentPlayer || isTeamFull() || !isTeamEligibileForCurrentPlayer()"
               pattern="([1-9][0-9]*)000">
         </div>
         <div class="col-sm-2 col-xs-8 vcenter padding-0">

@@ -6,14 +6,14 @@
 export const environment = {
   production: false,
   teamBudget: 200000,
-  fullTeamCount: 16,
-  applyDEPConstraint: true,
   departmentConstraints: {
+    //mention all the different departments and their quota here. 
+    //You need not mention quota about "Lucky Draw" players, but make sure to mark their  BU as "Lucky Draw"
     'EA' : 2,
     'Ops' : 2,
     'ET-Macys': 5,
     'ET-Engg': 3,
     'ET-GAP': 2,
-    'ET-Others': 2  
+    'ET-Others': 2
   }
 };

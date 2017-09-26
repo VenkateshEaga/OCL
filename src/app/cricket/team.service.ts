@@ -1,33 +1,43 @@
+import { PlayerService } from 'app/cricket/player.service';
+import { Injectable } from '@angular/core';
+import { DataService } from './data.service';
 import { Subject } from 'rxjs/Subject';
 import { OnInit } from '@angular/core';
 import { Team } from './team.model';
 import { Player } from "app/cricket/player.model";
 import { environment } from "environments/environment";
+
+@Injectable()
 export class TeamService {
     fetchTeams = new Subject<void>();     //from server
     teamsChanged = new Subject<Team[]>();
     currentPlayerStatusChanged = new Subject<void>();
+    private totalPlayerCount: number;
     private teams: Team[]
-  //  = [
-        // new Team(1, "Avengers", "assets/team-logos/Avengers.png", []),
-        // new Team(2, "Spartans", "assets/team-logos/Spartans.png", []),
-        // new Team(3, "Royal Riders", "assets/team-logos/RR.png", []),
-        // new Team(4, "Blazing FireBirds", "assets/team-logos/FB.png", []),
-        // new Team(5, "Sunrisers", "assets/team-logos/SRH.png", []),
-        // new Team(6, "Royal Challengers", "assets/team-logos/RCB.png", []),
-        // new Team(7, "Mumbai Indians", "assets/team-logos/MI.png", []),
-        // new Team(8, "Kings XI", "assets/team-logos/KXIP.png", []),
-        // new Team(9, "Super Kings", "assets/team-logos/CSK.png", []),
-        // new Team(10, "Dare Devils", "assets/team-logos/DD.png", []),
-   // ];
-    constructor() {
+    // = [
+    //     new Team(1, "Avengers", "assets/team-logos/Avengers.png", []),
+    //     new Team(2, "Spartans", "assets/team-logos/Spartans.png", []),
+    //     new Team(3, "Royal Riders", "assets/team-logos/RR.png", []),
+    //     new Team(4, "Blazing FireBirds", "assets/team-logos/FB.png", []),
+    //     new Team(5, "Sunrisers", "assets/team-logos/SRH.png", []),
+    //     new Team(6, "Royal Challengers", "assets/team-logos/RCB.png", []),
+    //     new Team(7, "Mumbai Indians", "assets/team-logos/MI.png", []),
+    //     new Team(8, "Kings XI", "assets/team-logos/KXIP.png", []),
+    //     new Team(9, "Super Kings", "assets/team-logos/CSK.png", []),
+    //     new Team(10, "Dare Devils", "assets/team-logos/DD.png", []),
+    // ];
+    constructor(private dataService: DataService) {
 
     }
 
     getTeams() {
         if (this.teams == null) {
-            this.fetchTeams.next();
-            return this.teams == null ? [] : this.teams.slice();
+            this.dataService.getTeams().subscribe(
+                (teams: Team[]) => {
+                    this.teams = teams;
+                    this.teamsChanged.next(this.teams == null ? [] : this.teams.slice());
+                }
+            )
         }
         else {
             return this.teams.slice();
@@ -44,7 +54,7 @@ export class TeamService {
             teams = [];
         }
         this.teams = teams;
-        this.teamsChanged.next(this.teams);
+        this.teamsChanged.next(this.teams.slice());
     }
     getTeam(id: number) {
         return this.getTeams().find(x => x.id === id);
@@ -55,9 +65,25 @@ export class TeamService {
         team.players.forEach((player) => {
             moneySpent += player.moneySpentOn;
         })
-        let futureMinMoneyOnPlayers = (environment.fullTeamCount - this.playerCount(team) - 1) * 1000;
+        let futureMinMoneyOnPlayers = (this.maxPlayersPerTeam() - this.playerCount(team) - 1) * 1000;
         return environment.teamBudget - moneySpent - (futureMinMoneyOnPlayers < 0 ? 0 : futureMinMoneyOnPlayers);
     };
+
+    setTotalPlayerCount(playerCount: number) {
+        this.totalPlayerCount = playerCount;
+    }
+
+    maxPlayersPerTeam() {
+        var maxPlayersAvailable = Math.floor(this.totalPlayerCount / this.teams.length);
+        var extraPlayerCount = this.totalPlayerCount % this.teams.length;
+        if (extraPlayerCount != 0) {
+            if (this.teams.filter(x => x.players.length == maxPlayersAvailable + 1)
+                .length < extraPlayerCount) {
+                return maxPlayersAvailable + 1;
+            }
+        }
+        return maxPlayersAvailable;
+    }
 
 
     playerCount(team: Team): number {
@@ -65,14 +91,9 @@ export class TeamService {
     }
 
     isTeamEligibleForCurrentPlayer(currentPlayer: Player, currentTeam: Team) {
-        if (environment.applyDEPConstraint) {
-            let sameDepPlayers: number = currentTeam.players.filter((player: Player) => {
-                return (player.businessUnit == currentPlayer.businessUnit && !player.isCaptain && !player.isViceCaptain)
-            }).length;
-            return environment.departmentConstraints[currentPlayer.businessUnit] > sameDepPlayers;
-        }
-        else {
-            return true;
-        }
+        let sameDepPlayers: number = currentTeam.players.filter((player: Player) => {
+            return (player.businessUnit == currentPlayer.businessUnit && !player.isCaptain && !player.isViceCaptain)
+        }).length;
+        return (environment.departmentConstraints[currentPlayer.businessUnit] || sameDepPlayers + 1) > sameDepPlayers;
     }
 }

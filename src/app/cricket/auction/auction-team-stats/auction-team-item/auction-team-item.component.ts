@@ -43,7 +43,7 @@ export class AuctionTeamItemComponent implements OnInit, OnDestroy {
   }
 
   isTeamFull(): boolean {
-    return (this.teamService.playerCount(this.teamItem) >= environment.fullTeamCount) ? true : false;
+    return (this.teamService.playerCount(this.teamItem) >= this.teamService.maxPlayersPerTeam()) ? true : false;
   }
 
   playerCount(): number {

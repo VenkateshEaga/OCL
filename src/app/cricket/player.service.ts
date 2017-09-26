@@ -1,26 +1,28 @@
+import { DataService } from './data.service';
 import { Subscription } from 'rxjs/Subscription';
 import { TeamService } from 'app/cricket/team.service';
 import { Injectable, OnInit } from '@angular/core';
 import { Player } from 'app/cricket/player.model';
 import { Subject } from "rxjs/Subject";
+
 @Injectable()
 export class PlayerService {
     nextPlayerPicked = new Subject<Player>();     //to other components and services
-    fetchPlayers = new Subject<void>();        //from server
     playerUpdated = new Subject<Player>();       //to server
     noCurrentPlayerSubscription: Subscription;
     private id: number = 0;
     private players: Player[] = [];
     private currentPlayer: Player;
 
-    constructor(private teamService: TeamService) {
+    constructor(private teamService: TeamService, private dataService: DataService) {
+        
         // this.players.push(
         //     new Player(
         //         1,
         //         "Rajesh Vottem",
         //         "assets/profiles/Rajesh_Vottem.jpg",
         //         0,
-        //         "OPS",
+        //         "Lucky Draw",
         //         "All-Rounder",
         //         "Right Hand Batsman",
         //         "Right Arm Off-Spin",
@@ -36,7 +38,7 @@ export class PlayerService {
         //         "Veera Annem",
         //         "assets/profiles/Veera.jpg",
         //         0,
-        //         "ET",
+        //         "Lucky Draw",
         //         "Specialist Batsman",
         //         "Right Hand Batsman",
         //         "Right Arm Medium",
@@ -52,7 +54,7 @@ export class PlayerService {
         //         "Venkat Eaga",
         //         "assets/profiles/Venkat.jpg",
         //         0,
-        //         "ET",
+        //         "Lucky Draw",
         //         "Wicket Keeper-Batsman",
         //         "Right Hand Batsman",
         //         "",
@@ -210,9 +212,8 @@ export class PlayerService {
         //         0)
         // );
 
-        this.noCurrentPlayerSubscription =  this.teamService.currentPlayerStatusChanged.subscribe(
-            () =>
-            {
+        this.noCurrentPlayerSubscription = this.teamService.currentPlayerStatusChanged.subscribe(
+            () => {
                 this.currentPlayer = null;
             }
         );
@@ -220,12 +221,23 @@ export class PlayerService {
 
     fetchPlayersFromdb() {
         if (this.players.length == 0) {
-            this.fetchPlayers.next();
+            this.dataService.getPlayers().subscribe(
+                (players: Player[]) =>
+                {
+                    this.players = players;
+                }
+            )
         }
+        this.teamService.setTotalPlayerCount(this.players.length);
     }
 
     getCurrentPlayer() {
         return this.currentPlayer;
+    }
+
+    getPlayersCount()
+    {
+        return this.players == null ? 0: this.players.length;
     }
 
     fetchNewPlayer() {
@@ -235,27 +247,46 @@ export class PlayerService {
         }
         let playersLeftCount = 0;
         let skipCounter = 0;
-        do {
 
-            if (this.players.filter(
-                function (el) {
-                    return (el.teamId == 0)
-                }).length == 0) {
-                alert('No players left to pick! This auction is complete!');
-                break;
-            }
-
-            this.currentPlayer = this.players.filter(
-                function (el) {
-                    if (el.teamId == 0 && skipCounter == el.skippedCount) {
-                        playersLeftCount++;
+        if (this.players.filter(
+            function (el) {
+                return (el.teamId == 0)
+            }).length == 0) {
+            alert('No players left to pick! This auction is complete!');
+        }
+        else if (this.players.filter(
+            function (el) {
+                return (el.teamId == 0 && el.businessUnit != 'Lucky Draw')
+            }).length == 0) {
+            playersLeftCount = 0;
+            skipCounter = 0;
+            do {
+                this.currentPlayer = this.players.filter(
+                    function (el) {
+                        if (el.teamId == 0 && el.businessUnit == 'Lucky Draw' && skipCounter == el.skippedCount) {
+                            playersLeftCount++;
+                        }
+                        return (el.teamId == 0 && el.businessUnit == 'Lucky Draw' && skipCounter == el.skippedCount)
                     }
-                    return (el.teamId == 0 && skipCounter == el.skippedCount)
-                }
-            )[Math.floor(Math.random() * playersLeftCount)];
-            skipCounter++;
-        } while (playersLeftCount == 0)
-        this.emitNextPlayer();
+                )[Math.floor(Math.random() * playersLeftCount)];
+                skipCounter++;
+            } while (playersLeftCount == 0)
+            this.emitNextPlayer();
+        }
+        else {
+            do {
+                this.currentPlayer = this.players.filter(
+                    function (el) {
+                        if (el.teamId == 0 && el.businessUnit != 'Lucky Draw' && skipCounter == el.skippedCount) {
+                            playersLeftCount++;
+                        }
+                        return (el.teamId == 0 && el.businessUnit != 'Lucky Draw' && skipCounter == el.skippedCount)
+                    }
+                )[Math.floor(Math.random() * playersLeftCount)];
+                skipCounter++;
+            } while (playersLeftCount == 0)
+            this.emitNextPlayer();
+        }
     }
 
     setPlayers(players: Player[]) {
